@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .progress {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            margin-bottom: 30px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 12px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #e8e8e8;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 15px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-bottom: 15px;
+            min-height: 20px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #3d8b40;
+        }
+
+        .success-message {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+            color: #4caf50;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .question {
+                font-size: 16px;
+            }
+
+            .option {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .option label {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quizContainer">
+        <h1>HTML Quiz</h1>
+        <div class="progress" id="progress">Question 1 of 40:</div>
+        <div class="question" id="question"></div>
+        <div class="options-container" id="optionsContainer"></div>
+        <div class="controls">
+            <div>
+                <div class="error-message" id="errorMessage"></div>
+                <button onclick="nextQuestion()">Next &gt;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "What does HTML stand for?",
+                options: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"],
+                correctAnswer: "Hyper Text Markup Language"
+            },
+            {
+                question: "Which HTML tag is used to define the entire HTML document?",
+                options: ["<document>", "<html>", "<root>", "<page>"],
+                correctAnswer: "<html>"
+            },
+            {
+                question: "What is the correct HTML tag for inserting a line break?",
+                options: ["<lb>", "<break>", "<br>", "<newline>"],
+                correctAnswer: "<br>"
+            },
+            {
+                question: "Which HTML element is used for the largest heading?",
+                options: ["<heading>", "<h1>", "<header>", "<head>"],
+                correctAnswer: "<h1>"
+            },
+            {
+                question: "What is the purpose of the <head> tag?",
+                options: ["To define the main heading of the document", "To contain metadata and other hidden information", "To structure the body of the document", "To define page headers for printing"],
+                correctAnswer: "To contain metadata and other hidden information"
+            },
+            {
+                question: "Which tag is used to define a paragraph?",
+                options: ["<p>", "<paragraph>", "<para>", "<text>"],
+                correctAnswer: "<p>"
+            },
+            {
+                question: "What attribute is used to specify an alternative text for an image?",
+                options: ["text", "alt", "description", "title"],
+                correctAnswer: "alt"
+            },
+            {
+                question: "Which tag is used to define a hyperlink?",
+                options: ["<link>", "<a>", "<href>", "<url>"],
+                correctAnswer: "<a>"
+            },
+            {
+                question: "What is the correct syntax for linking to an external CSS file?",
+                options: ["<link rel='stylesheet' href='style.css'>", "<css href='style.css'>", "<style src='style.css'>", "<stylesheet href='style.css'>"],
+                correctAnswer: "<link rel='stylesheet' href='style.css'>"
+            },
+            {
+                question: "Which HTML element is used to define important text?",
+                options: ["<important>", "<strong>", "<bold>", "<big>"],
+                correctAnswer: "<strong>"
+            },
+            {
+                question: "What tag is used to create an unordered list?",
+                options: ["<ul>", "<ol>", "<li>", "<list>"],
+                correctAnswer: "<ul>"
+            },
+            {
+                question: "What tag is used to create an ordered list?",
+                options: ["<ul>", "<ol>", "<li>", "<list>"],
+                correctAnswer: "<ol>"
+            },
+            {
+                question: "Which tag is used to define a table?",
+                options: ["<tab>", "<table>", "<tbl>", "<data>"],
+                correctAnswer: "<table>"
+            },
+            {
+                question: "What does the <tr> tag represent in a table?",
+                options: ["Table row", "Table record", "Table range", "Table reference"],
+                correctAnswer: "Table row"
+            },
+            {
+                question: "Which tag defines a table cell?",
+                options: ["<tc>", "<td>", "<cell>", "<data>"],
+                correctAnswer: "<td>"
+            },
+            {
+                question: "What is the correct HTML tag for creating a form?",
+                options: ["<form>", "<input>", "<fields>", "<data>"],
+                correctAnswer: "<form>"
+            },
+            {
+                question: "Which input type is used for password fields?",
+                options: ["<input type='secret'>", "<input type='password'>", "<input type='pwd'>", "<input type='secure'>"],
+                correctAnswer: "<input type='password'>"
+            },
+            {
+                question: "What tag is used to define a submit button?",
+                options: ["<input type='submit'>", "<button type='submit'>", "<submit>", "Both A and B"],
+                correctAnswer: "Both A and B"
+            },
+            {
+                question: "Which HTML5 semantic tag is used for article content?",
+                options: ["<content>", "<article>", "<section>", "<main>"],
+                correctAnswer: "<article>"
+            },
+            {
+                question: "What does the <nav> tag define?",
+                options: ["Navigation bar", "New article", "Next action", "Name attribute"],
+                correctAnswer: "Navigation bar"
+            },
+            {
+                question: "Which tag represents the main content of a document?",
+                options: ["<content>", "<body>", "<main>", "<center>"],
+                correctAnswer: "<main>"
+            },
+            {
+                question: "What is the <section> tag used for?",
+                options: ["To cut up a document", "To define generic sections in a document", "To create headers", "To link documents"],
+                correctAnswer: "To define generic sections in a document"
+            },
+            {
+                question: "Which tag is used to define emphasized text?",
+                options: ["<strong>", "<em>", "<bold>", "<i>"],
+                correctAnswer: "<em>"
+            },
+            {
+                question: "What is the correct way to make a link open in a new tab?",
+                options: ["<a href='url' target='_new'>", "<a href='url' target='_blank'>", "<a href='url' new>", "<a href='url' target='new'>"],
+                correctAnswer: "<a href='url' target='_blank'>"
+            },
+            {
+                question: "Which HTML tag is used to embed a video?",
+                options: ["<movie>", "<video>", "<media>", "<embed>"],
+                correctAnswer: "<video>"
+            },
+            {
+                question: "What is the correct tag for embedding audio?",
+                options: ["<sound>", "<audio>", "<music>", "<play>"],
+                correctAnswer: "<audio>"
+            },
+            {
+                question: "Which attribute specifies a unique identifier for an HTML element?",
+                options: ["class", "name", "id", "tag"],
+                correctAnswer: "id"
+            },
+            {
+                question: "What is the correct syntax for adding a comment in HTML?",
+                options: ["// This is a comment", "<!-- This is a comment -->", "# This is a comment", "* This is a comment"],
+                correctAnswer: "<!-- This is a comment -->"
+            },
+            {
+                question: "Which tag is used to define a data cell in a table header?",
+                options: ["<td>", "<tr>", "<th>", "<th>"],
+                correctAnswer: "<th>"
+            },
+            {
+                question: "What does the <canvas> tag do in HTML5?",
+                options: ["Creates a text area", "Draws graphics via JavaScript", "Displays images", "Creates interactive forms"],
+                correctAnswer: "Draws graphics via JavaScript"
+            },
+            {
+                question: "Which HTML5 input type is used for date selection?",
+                options: ["<input type='date'>", "<input type='calendar'>", "<input type='time'>", "<input type='day'>"],
+                correctAnswer: "<input type='date'>"
+            },
+            {
+                question: "What does the <label> tag do?",
+                options: ["Adds a description to a form element", "Creates a link", "Defines a section", "Embeds a video"],
+                correctAnswer: "Adds a description to a form element"
+            },
+            {
+                question: "Which tag is used to define the title of an HTML document?",
+                options: ["<h1>", "<heading>", "<title>", "<name>"],
+                correctAnswer: "<title>"
+            },
+            {
+                question: "What is the correct HTML tag for a dropdown list?",
+                options: ["<dropdown>", "<list>", "<select>", "<option>"],
+                correctAnswer: "<select>"
+            },
+            {
+                question: "Which HTML tag is used to define a list item?",
+                options: ["<item>", "<li>", "<list-item>", "<i>"],
+                correctAnswer: "<li>"
+            },
+            {
+                question: "What does the <footer> tag represent?",
+                options: ["The bottom of a page", "A section for navigation", "A section containing page footer information", "An outdated tag"],
+                correctAnswer: "A section containing page footer information"
+            },
+            {
+                question: "Which attribute is used to specify the destination URL in a link?",
+                options: ["url", "link", "href", "src"],
+                correctAnswer: "href"
+            },
+            {
+                question: "What tag is used to define an image?",
+                options: ["<img>", "<image>", "<picture>", "<photo>"],
+                correctAnswer: "<img>"
+            },
+            {
+                question: "Which HTML tag is used to define a division or section?",
+                options: ["<div>", "<division>", "<section>", "<block>"],
+                correctAnswer: "<div>"
+            },
+            {
+                question: "What does the <aside> tag define?",
+                options: ["A comment", "Content tangentially related to the main content", "A navigation menu", "A sidebar only"],
+                correctAnswer: "Content tangentially related to the main content"
+            },
+            {
+                question: "Which tag is used to define a clickable button?",
+                options: ["<click>", "<btn>", "<button>", "<input>"],
+                correctAnswer: "<button>"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const question = quizData[currentQuestionIndex];
+            document.getElementById('progress').textContent = `Question ${currentQuestionIndex + 1} of 40:`;
+            document.getElementById('question').textContent = question.question;
+            document.getElementById('errorMessage').textContent = '';
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'answer';
+                input.value = option;
+                input.id = `option${index}`;
+
+                const label = document.createElement('label');
+                label.htmlFor = `option${index}`;
+                label.textContent = option;
+
+                optionDiv.appendChild(input);
+                optionDiv.appendChild(label);
+                optionsContainer.appendChild(optionDiv);
+            });
+        }
+
+        function nextQuestion() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedAnswer) {
+                alert('Please select an option.');
+                return;
+            }
+
+            const correctAnswer = quizData[currentQuestionIndex].correctAnswer;
+
+            if (selectedAnswer.value === correctAnswer) {
+                currentQuestionIndex++;
+
+                if (currentQuestionIndex >= 40) {
+                    showSuccess();
+                    return;
+                }
+
+                displayQuestion();
+            } else {
+                document.getElementById('errorMessage').textContent = 'Incorrect answer. You must select the right answer to proceed.';
+            }
+        }
+
+        function showSuccess() {
+            const quizContainer = document.getElementById('quizContainer');
+            quizContainer.innerHTML = '<div class="success-message">Congratulations! You have completed the HTML Quiz.</div>';
+        }
+
+        // Initialize quiz
+        displayQuestion();
+    </script>
+</body>
+</html>

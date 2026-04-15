@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marwadi University — Rajkot, Gujarat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── TOKENS ─── */
+    :root {
+      --mu-red:     #c0272d;   /* Marwadi brand red */
+      --mu-red-dk:  #8f1a1f;
+      --mu-red-lt:  #e84e54;
+      --mu-dark:    #1c1410;
+      --mu-brown:   #3a2a20;
+      --mu-sand:    #f7f3ee;
+      --mu-paper:   #fdfaf7;
+      --mu-muted:   #7a6a62;
+      --mu-rule:    #e4ddd6;
+      --mu-white:   #ffffff;
+      --gap: 96px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--mu-paper);
+      color: var(--mu-brown);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ─── UTILITY ─── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 36px; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--mu-red);
+      margin-bottom: 12px;
+    }
+
+    h2.title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(30px, 4.5vw, 50px);
+      font-weight: 700;
+      color: var(--mu-dark);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .dash {
+      width: 44px; height: 3px;
+      background: var(--mu-red);
+      margin-bottom: 32px;
+    }
+
+    p.body-lead {
+      font-size: 16.5px;
+      color: var(--mu-muted);
+      max-width: 620px;
+      line-height: 1.85;
+    }
+
+    /* ─── TOPBAR ─── */
+    .topbar {
+      background: var(--mu-dark);
+      padding: 9px 0;
+    }
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      color: #9e9189;
+      letter-spacing: 0.3px;
+    }
+    .topbar a { color: #9e9189; text-decoration: none; transition: color 0.2s; }
+    .topbar a:hover { color: var(--mu-red-lt); }
+    .topbar-links { display: flex; gap: 18px; }
+
+    /* ─── NAV ─── */
+    nav {
+      background: var(--mu-paper);
+      border-bottom: 1px solid var(--mu-rule);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 48px; height: 48px;
+      background: var(--mu-red);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-mark span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+    .logo-info strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--mu-dark);
+      line-height: 1.2;
+    }
+    .logo-info small {
+      font-size: 11px;
+      color: var(--mu-muted);
+      letter-spacing: 0.8px;
+    }
+
+    .nav-menu { display: flex; gap: 2px; }
+    .nav-menu a {
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--mu-brown);
+      padding: 9px 15px;
+      border-radius: 5px;
+      transition: background 0.18s, color 0.18s;
+    }
+    .nav-menu a:hover {
+      background: var(--mu-red);
+      color: #fff;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--mu-dark);
+      color: #fff;
+      padding: 108px 0 96px;
+    }
+
+    /* Geometric pattern bg */
+    .hero-pattern {
+      position: absolute; inset: 0; overflow: hidden;
+    }
+    .hero-pattern::before {
+      content: '';
+      position: absolute;
+      width: 900px; height: 900px;
+      right: -200px; top: -200px;
+      border-radius: 50%;
+      border: 120px solid rgba(192,39,45,0.12);
+    }
+    .hero-pattern::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      right: 120px; top: 120px;
+      border-radius: 50%;
+      border: 60px solid rgba(192,39,45,0.08);
+    }
+    .hero-lines {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 400px;
+      left: -100px; bottom: -100px;
+      background: radial-gradient(ellipse, rgba(192,39,45,0.15) 0%, transparent 70%);
+    }
+
+    .hero .container { position: relative; z-index: 3; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(192,39,45,0.2);
+      border: 1px solid rgba(192,39,45,0.4);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #f0a0a3;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 7vw, 80px);
+      font-weight: 700;
+      line-height: 1.05;
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+    .hero h1 .accent { color: var(--mu-red-lt); }
+
+    .hero-sub {
+      font-size: 17px;
+      color: #b0a09a;
+      max-width: 520px;
+      margin-bottom: 52px;
+      line-height: 1.85;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 44px;
+    }
+    .stat {
+      flex: 1;
+      padding-right: 36px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      margin-right: 36px;
+    }
+    .stat:last-child { border-right: none; margin-right: 0; }
+    .stat strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px; font-weight: 700;
+      color: var(--mu-red-lt);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat span { font-size: 12.5px; color: #7a6a62; letter-spacing: 0.5px; }
+
+    /* ─── RED BAND ─── */
+    .red-band {
+      background: var(--mu-red);
+      padding: 18px 0;
+    }
+    .red-band .container {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 24px;
+    }
+    .red-band p {
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.9);
+      flex: 1;
+    }
+    .red-band-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.35);
+      padding: 6px 18px;
+      border-radius: 3px;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: var(--gap) 0; }
+    section.alt { background: var(--mu-sand); }
+
+    /* ─── VISION MISSION ─── */
+    .vm-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 16px;
+    }
+    .vm-card {
+      padding: 44px 40px;
+      border: 1px solid var(--mu-rule);
+      border-radius: 3px;
+      background: var(--mu-paper);
+      position: relative;
+      overflow: hidden;
+    }
+    .vm-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--mu-red);
+    }
+    .vm-card .card-icon {
+      width: 44px; height: 44px;
+      background: #fdecea;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    .vm-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 700;
+      color: var(--mu-dark);
+      margin-bottom: 14px;
+    }
+    .vm-card p {
+      font-size: 15px;
+      color: var(--mu-muted);
+      line-height: 1.9;
+    }
+
+    /* ─── PSO ─── */
+    .pso-grid { display: grid; gap: 18px; margin-top: 12px; }
+    .pso-row {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 0;
+      border: 1px solid var(--mu-rule);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--mu-paper);
+      transition: box-shadow 0.22s, border-color 0.22s;
+    }
+    .pso-row:hover {
+      border-color: var(--mu-red);
+      box-shadow: 0 6px 28px rgba(192,39,45,0.08);
+    }
+    .pso-index {
+      background: var(--mu-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 700;
+      color: rgba(255,255,255,0.18);
+    }
+    .pso-body { padding: 24px 28px; }
+    .pso-body h4 {
+      font-size: 15px; font-weight: 600;
+      color: var(--mu-dark);
+      margin-bottom: 6px;
+    }
+    .pso-body p { font-size: 14px; color: var(--mu-muted); line-height: 1.8; }
+
+    /* ─── COURSES ─── */
+    .courses-tabs { display: flex; gap: 8px; margin-bottom: 36px; flex-wrap: wrap; }
+    .tab-label {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 3px;
+      border: 1px solid var(--mu-rule);
+      color: var(--mu-muted);
+      background: var(--mu-paper);
+      cursor: default;
+    }
+    .tab-label.active {
+      background: var(--mu-red);
+      border-color: var(--mu-red);
+      color: #fff;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .course-card {
+      background: var(--mu-dark);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.22s;
+    }
+    .course-card:hover { transform: translateY(-5px); }
+    .course-stripe {
+      height: 5px;
+      background: var(--mu-red);
+    }
+    .course-body { padding: 32px 30px 28px; color: #fff; }
+    .course-level {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--mu-red-lt);
+      margin-bottom: 10px;
+    }
+    .course-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px; font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 18px;
+    }
+    .course-meta {
+      display: flex; gap: 18px;
+      font-size: 12.5px;
+      color: #7a6a62;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .course-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .course-tags span {
+      font-size: 11.5px;
+      color: #a09088;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 2px;
+      padding: 4px 10px;
+    }
+
+    /* ─── RECRUITERS ─── */
+    .rec-intro { margin-bottom: 52px; }
+
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 18px;
+    }
+    .rec-card {
+      border: 1px solid var(--mu-rule);
+      border-radius: 4px;
+      background: var(--mu-paper);
+      padding: 28px 18px;
+      text-align: center;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .rec-card:hover {
+      border-color: var(--mu-red);
+      box-shadow: 0 6px 24px rgba(192,39,45,0.1);
+      transform: translateY(-3px);
+    }
+    .rec-logo {
+      width: 54px; height: 54px;
+      background: var(--mu-dark);
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rec-logo abbr {
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; font-weight: 700;
+      color: var(--mu-red-lt);
+      letter-spacing: -0.5px;
+    }
+    .rec-card h4 {
+      font-size: 13.5px; font-weight: 600;
+      color: var(--mu-dark);
+      margin-bottom: 4px;
+    }
+    .rec-card p { font-size: 11.5px; color: var(--mu-muted); }
+
+    .placement-strip {
+      margin-top: 52px;
+      background: var(--mu-dark);
+      border-radius: 6px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: hidden;
+    }
+    .ps-item {
+      padding: 36px 28px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .ps-item:last-child { border-right: none; }
+    .ps-item strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 700;
+      color: var(--mu-red-lt);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .ps-item span { font-size: 12px; color: #5e4e47; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--mu-dark);
+      color: #7a6a62;
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 28px;
+    }
+    .f-brand strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; color: #fff;
+      display: block; margin-bottom: 10px;
+    }
+    .f-brand p { font-size: 13.5px; line-height: 1.85; max-width: 270px; }
+    .f-brand .f-contact { margin-top: 20px; font-size: 13px; line-height: 2; }
+
+    .f-col h5 {
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--mu-red-lt); margin-bottom: 18px;
+    }
+    .f-col ul { list-style: none; }
+    .f-col ul li { margin-bottom: 11px; }
+    .f-col ul li a {
+      color: #7a6a62; text-decoration: none; font-size: 13.5px;
+      transition: color 0.18s;
+    }
+    .f-col ul li a:hover { color: #fff; }
+
+    .footer-bottom {
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: #4a3a32;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge { animation: slideUp 0.6s ease both; }
+    .hero h1    { animation: slideUp 0.6s 0.12s ease both; }
+    .hero-sub   { animation: slideUp 0.6s 0.22s ease both; }
+    .hero-stats { animation: slideUp 0.6s 0.34s ease both; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 800px) {
+      .vm-wrap { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .placement-strip { grid-template-columns: 1fr 1fr; }
+      .stat { border-right: none; margin-right: 0; padding-right: 0; margin-bottom: 24px; }
+      .hero-stats { flex-direction: column; }
+      .nav-menu { display: none; }
+    }
+    @media (max-width: 500px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .placement-strip { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container">
+      <span>Marwadi University — Rajkot, Gujarat &nbsp;·&nbsp; NAAC A+ &nbsp;·&nbsp; UGC Recognised &nbsp;·&nbsp; AICTE Approved</span>
+      <div class="topbar-links">
+        <a href="#">Student Portal</a>
+        <a href="#">Admissions</a>
+        <a href="#">Alumni</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a class="logo" href="#">
+        <div class="logo-mark"><span>MU</span></div>
+        <div class="logo-info">
+          <strong>Marwadi University</strong>
+          <small>Rajkot, Gujarat — Est. 2016</small>
+        </div>
+      </a>
+      <div class="nav-menu">
+        <a href="#vision">Vision &amp; Mission</a>
+        <a href="#pso">Programme Outcomes</a>
+        <a href="#courses">Courses</a>
+        <a href="#recruiters">Recruiters</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-badge">&#9679; Private University · Rajkot, Gujarat</div>
+      <h1>Where <span class="accent">Curiosity</span><br>Meets Excellence</h1>
+      <p class="hero-sub">
+        Marwadi University is a fast-growing private university in the heart of Rajkot,
+        committed to transforming students into future-ready professionals through
+        world-class education, research, and industry collaboration.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>10,000+</strong>
+          <span>Students Enrolled</span>
+        </div>
+        <div class="stat">
+          <strong>500+</strong>
+          <span>Faculty Members</span>
+        </div>
+        <div class="stat">
+          <strong>300+</strong>
+          <span>Recruiting Companies</span>
+        </div>
+        <div class="stat">
+          <strong>NAAC A+</strong>
+          <span>Accreditation Grade</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- RED BAND -->
+  <div class="red-band">
+    <div class="container">
+      <p>
+        Situated on a sprawling campus in Rajkot, Marwadi University offers over 100 programmes
+        across Engineering, Management, Science, Commerce, Law, and Design — with a strong focus
+        on innovation, entrepreneurship, and global readiness.
+      </p>
+      <span class="red-band-tag">NIRF Ranked Institution</span>
+    </div>
+  </div>
+
+  <!-- VISION & MISSION -->
+  <section id="vision">
+    <div class="container">
+      <span class="eyebrow">Our Foundation</span>
+      <h2 class="title">Vision &amp; Mission</h2>
+      <div class="dash"></div>
+      <div class="vm-wrap">
+        <div class="vm-card">
+          <div class="card-icon">🎯</div>
+          <h3>Vision</h3>
+          <p>
+            To be a globally recognised, student-centric university that nurtures innovative
+            thinkers, ethical leaders, and responsible citizens equipped to address the complex
+            challenges of a rapidly evolving world — through the pursuit of knowledge, research,
+            and entrepreneurship.
+          </p>
+        </div>
+        <div class="vm-card">
+          <div class="card-icon">🚀</div>
+          <h3>Mission</h3>
+          <p>
+            To deliver transformative education through a blend of academic rigour, industry
+            integration, and experiential learning. We are committed to fostering a culture of
+            research, innovation, and social responsibility — empowering every student to realise
+            their fullest potential and contribute meaningfully to society and the economy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PSO -->
+  <section id="pso" class="alt">
+    <div class="container">
+      <span class="eyebrow">B.Tech. Computer Science &amp; Engineering</span>
+      <h2 class="title">Programme Specific Outcomes</h2>
+      <div class="dash"></div>
+      <p class="body-lead" style="margin-bottom: 44px;">
+        Graduates of the B.Tech. CSE programme at Marwadi University will demonstrate
+        the following domain-specific competencies on successful completion of their degree.
+      </p>
+      <div class="pso-grid">
+
+        <div class="pso-row">
+          <div class="pso-index">01</div>
+          <div class="pso-body">
+            <h4>Software Design &amp; Development</h4>
+            <p>Ability to analyse, design, develop, and evaluate software systems using contemporary programming paradigms, software engineering practices, and industry-standard tools — from requirements gathering through deployment and maintenance.</p>
+          </div>
+        </div>
+
+        <div class="pso-row">
+          <div class="pso-index">02</div>
+          <div class="pso-body">
+            <h4>Computing Systems &amp; Networks</h4>
+            <p>Competence in understanding and designing computer architecture, operating systems, and communication networks — including system calls, process management, memory hierarchy, routing protocols, and network security fundamentals.</p>
+          </div>
+        </div>
+
+        <div class="pso-row">
+          <div class="pso-index">03</div>
+          <div class="pso-body">
+            <h4>Data, AI &amp; Intelligent Systems</h4>
+            <p>Proficiency in applying algorithms, data structures, database systems, statistical methods, and machine learning models to extract actionable insights and build intelligent, data-driven applications for real-world problem-solving.</p>
+          </div>
+        </div>
+
+        <div class="pso-row">
+          <div class="pso-index">04</div>
+          <div class="pso-body">
+            <h4>Cybersecurity &amp; Cloud Computing</h4>
+            <p>Understanding of information security principles, cryptographic techniques, cloud service models, and infrastructure design — enabling students to architect secure, scalable, and resilient systems aligned with modern enterprise needs.</p>
+          </div>
+        </div>
+
+        <div class="pso-row">
+          <div class="pso-index">05</div>
+          <div class="pso-body">
+            <h4>Innovation, Entrepreneurship &amp; Ethics</h4>
+            <p>Capability to identify technological opportunities, apply design thinking, and build innovative products — while demonstrating professional integrity, teamwork, effective communication, and ethical responsibility in engineering practice.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section id="courses">
+    <div class="container">
+      <span class="eyebrow">Academic Programmes</span>
+      <h2 class="title">Courses Offered</h2>
+      <div class="dash"></div>
+      <p class="body-lead" style="margin-bottom: 40px;">
+        Marwadi University offers undergraduate, postgraduate, and doctoral programmes
+        across engineering, management, sciences, commerce, law, and design disciplines.
+      </p>
+
+      <div class="courses-tabs">
+        <span class="tab-label active">All Programmes</span>
+        <span class="tab-label">Engineering</span>
+        <span class="tab-label">Management</span>
+        <span class="tab-label">Sciences</span>
+        <span class="tab-label">Design</span>
+      </div>
+
+      <div class="courses-grid">
+
+        <div class="course-card">
+          <div class="course-stripe"></div>
+          <div class="course-body">
+            <div class="course-level">Undergraduate · Engineering</div>
+            <h3>B.Tech. Computer Science &amp; Engineering</h3>
+            <div class="course-meta">
+              <span>4 Years</span><span>UGC Recognised</span><span>180 Seats</span>
+            </div>
+            <div class="course-tags">
+              <span>Data Structures</span><span>DBMS</span><span>OS</span>
+              <span>CN</span><span>Web Tech</span><span>ML</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-stripe"></div>
+          <div class="course-body">
+            <div class="course-level">Undergraduate · Engineering</div>
+            <h3>B.Tech. AI &amp; Machine Learning</h3>
+            <div class="course-meta">
+              <span>4 Years</span><span>UGC Recognised</span><span>60 Seats</span>
+            </div>
+            <div class="course-tags">
+              <span>Python</span><span>Deep Learning</span><span>NLP</span>
+              <span>Computer Vision</span><span>MLOps</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-stripe"></div>
+          <div class="course-body">
+            <div class="course-level">Undergraduate · Engineering</div>
+            <h3>B.Tech. Electronics &amp; Communication</h3>
+            <div class="course-meta">
+              <span>4 Years</span><span>UGC Recognised</span><span>60 Seats</span>
+            </div>
+            <div class="course-tags">
+              <span>VLSI</span><span>Embedded Systems</span><span>IoT</span>
+              <span>Signal Processing</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-stripe"></div>
+          <div class="course-body">
+            <div class="course-level">Undergraduate · Engineering</div>
+            <h3>B.Tech. Mechanical Engineering</h3>
+            <div class="course-meta">
+              <span>4 Years</span><span>UGC Recognised</span><span>120 Seats</span>
+            </div>
+            <div class="course-tags">
+              <span>CAD/CAM</span><span>Thermodynamics</span><span>Robotics</span>
+              <span>Manufacturing</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-stripe"></div>
+          <div class="course-body">
+            <div class="course-level">Postgraduate · Management</div>
+            <h3>M.B.A. — Business Administration</h3>
+            <div class="course-meta">
+              <span>2 Years</span><span>AICTE Approved</span><span>120 Seats</span>
+            </div>
+            <div class="course-tags">
+              <span>Marketing</span><span>Finance</span><span>HR</span>
+              <span>Operations</span><span>Business Analytics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-stripe"></div>
+          <div class="course-body">
+            <div class="course-level">Postgraduate · Engineering</div>
+            <h3>M.Tech. Computer Science &amp; Engineering</h3>
+            <div class="course-meta">
+              <span>2 Years</span><span>UGC Recognised</span><span>18 Seats</span>
+            </div>
+            <div class="course-tags">
+              <span>Advanced AI</span><span>Cybersecurity</span>
+              <span>Cloud Computing</span><span>Research Methods</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-stripe"></div>
+          <div class="course-body">
+            <div class="course-level">Undergraduate · Design</div>
+            <h3>B.Des. — Industrial &amp; Product Design</h3>
+            <div class="course-meta">
+              <span>4 Years</span><span>UGC Recognised</span><span>30 Seats</span>
+            </div>
+            <div class="course-tags">
+              <span>Sketching</span><span>3D Modelling</span>
+              <span>UX Design</span><span>Prototyping</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-stripe"></div>
+          <div class="course-body">
+            <div class="course-level">Undergraduate · Commerce</div>
+            <h3>B.Com. — Hons. with CMA</h3>
+            <div class="course-meta">
+              <span>3 Years</span><span>UGC Recognised</span><span>60 Seats</span>
+            </div>
+            <div class="course-tags">
+              <span>Accountancy</span><span>Taxation</span>
+              <span>Auditing</span><span>Cost Management</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RECRUITERS -->
+  <section id="recruiters" class="alt">
+    <div class="container">
+      <span class="eyebrow">Industry Connect &amp; Placements</span>
+      <h2 class="title">Our Top Recruiters</h2>
+      <div class="dash"></div>
+      <div class="rec-intro">
+        <p class="body-lead">
+          The Centre for Career Development &amp; Corporate Relations at Marwadi University
+          has cultivated strong, long-standing partnerships with leading organisations across
+          IT, engineering, finance, consulting, and manufacturing sectors.
+        </p>
+      </div>
+
+      <div class="rec-grid">
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>TCS</abbr></div>
+          <h4>Tata Consultancy Services</h4>
+          <p>IT Services</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>INF</abbr></div>
+          <h4>Infosys</h4>
+          <p>Consulting &amp; IT</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>WPR</abbr></div>
+          <h4>Wipro</h4>
+          <p>Technology</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>HCL</abbr></div>
+          <h4>HCL Technologies</h4>
+          <p>IT &amp; BPO</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>ACC</abbr></div>
+          <h4>Accenture</h4>
+          <p>Management Consulting</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>COG</abbr></div>
+          <h4>Cognizant</h4>
+          <p>Digital Engineering</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>L&T</abbr></div>
+          <h4>Larsen &amp; Toubro</h4>
+          <p>Engineering &amp; Infra</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>ADP</abbr></div>
+          <h4>ADP India</h4>
+          <p>HR Technology</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>ZOM</abbr></div>
+          <h4>Zomato</h4>
+          <p>Food-Tech</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>AMZ</abbr></div>
+          <h4>Amazon</h4>
+          <p>E-Commerce &amp; Cloud</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>GGL</abbr></div>
+          <h4>Google</h4>
+          <p>Technology</p>
+        </div>
+        <div class="rec-card">
+          <div class="rec-logo"><abbr>RIL</abbr></div>
+          <h4>Reliance Industries</h4>
+          <p>Conglomerate</p>
+        </div>
+      </div>
+
+      <div class="placement-strip">
+        <div class="ps-item">
+          <strong>94%</strong>
+          <span>Overall Placement Rate</span>
+        </div>
+        <div class="ps-item">
+          <strong>₹42L</strong>
+          <span>Highest CTC Offered</span>
+        </div>
+        <div class="ps-item">
+          <strong>₹6.2L</strong>
+          <span>Average Package</span>
+        </div>
+        <div class="ps-item">
+          <strong>300+</strong>
+          <span>Recruiting Organisations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="f-brand">
+          <strong>Marwadi University</strong>
+          <p>Marwadi Education Foundation's Group of Institutions, Rajkot — Morbi Highway, Nr. Gauridad, Rajkot — 360 003, Gujarat, India</p>
+          <div class="f-contact">
+            <div>📞 +91-281-6194400</div>
+            <div>✉ info@marwadiuniversity.ac.in</div>
+            <div>🌐 www.marwadiuniversity.ac.in</div>
+          </div>
+        </div>
+        <div class="f-col">
+          <h5>Academics</h5>
+          <ul>
+            <li><a href="#">Engineering</a></li>
+            <li><a href="#">Management</a></li>
+            <li><a href="#">Sciences</a></li>
+            <li><a href="#">Commerce &amp; Law</a></li>
+            <li><a href="#">Design</a></li>
+            <li><a href="#">Ph.D. Programmes</a></li>
+          </ul>
+        </div>
+        <div class="f-col">
+          <h5>Campus Life</h5>
+          <ul>
+            <li><a href="#">Library</a></li>
+            <li><a href="#">Research Labs</a></li>
+            <li><a href="#">Sports Complex</a></li>
+            <li><a href="#">Hostels</a></li>
+            <li><a href="#">Clubs &amp; Societies</a></li>
+          </ul>
+        </div>
+        <div class="f-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#">Admissions 2025</a></li>
+            <li><a href="#">NIRF Ranking</a></li>
+            <li><a href="#">NAAC Certificate</a></li>
+            <li><a href="#">UGC Recognition</a></li>
+            <li><a href="#">Grievance Portal</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Marwadi University, Rajkot. All rights reserved.</span>
+        <span>UGC Recognised | AICTE Approved | NAAC A+</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

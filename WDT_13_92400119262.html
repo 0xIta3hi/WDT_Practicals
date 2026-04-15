@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDT Practical Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            color: #555;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            width: 180px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            width: 250px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        /* Error state for input */
+        input.error {
+            border: 1px solid #c9302c;
+        }
+
+        /* Question Mark Icon */
+        .help-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            background-color: #00a8e8;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .optional-text {
+            font-size: 12px;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        /* Error Message Tooltip */
+        .error-msg {
+            background-color: #d9534f;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-left: 15px;
+            position: relative;
+            display: none; /* Hidden by default */
+        }
+
+        /* The triangle pointer for the tooltip */
+        .error-msg::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -8px;
+            transform: translateY(-50%);
+            border-width: 5px 8px 5px 0;
+            border-style: solid;
+            border-color: transparent #d9534f transparent transparent;
+        }
+
+        /* Show error message when active */
+        .error-msg.active {
+            display: inline-block;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            margin-left: 180px;
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .submit-btn:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="practicalForm" novalidate>
+        
+        <div class="form-row">
+            <div class="form-label">Name</div>
+            <div class="input-group">
+                <input type="text" id="name" name="name" value="js-tutorial.com">
+                <span class="help-icon">?</span>
+                <span class="error-msg" id="nameError">input is not complete</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Occupation</div>
+            <div class="input-group">
+                <input type="text" id="occupation" name="occupation">
+                <span class="help-icon">?</span>
+                <span class="optional-text">(optional)</span>
+                <span class="error-msg" id="occupationError">please put something here</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">HTML5 Regex</div>
+            <div class="input-group">
+                <input type="text" id="regex" name="regex">
+                <span class="help-icon">?</span>
+                <span class="error-msg" id="regexError">please put something here</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Email</div>
+            <div class="input-group">
+                <input type="email" id="email" name="email">
+                <span class="error-msg" id="emailError">please put a valid email</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Confirm Email Address</div>
+            <div class="input-group">
+                <input type="email" id="confirmEmail" name="confirmEmail">
+                <span class="error-msg" id="confirmEmailError">emails do not match</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Number</div>
+            <div class="input-group">
+                <input type="number" id="number" name="number">
+                <span class="help-icon">?</span>
+                <span class="error-msg" id="numberError">please put a valid number</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Date</div>
+            <div class="input-group">
+                <input type="text" id="date" name="date" placeholder="mm/dd/yyyy">
+                <span class="error-msg" id="dateError">please put a valid date</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Password</div>
+            <div class="input-group">
+                <input type="password" id="password" name="password">
+                <span class="help-icon">?</span>
+                <span class="error-msg" id="passwordError">please put something here</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Repeat Password</div>
+            <div class="input-group">
+                <input type="password" id="repeatPassword" name="repeatPassword">
+                <span class="error-msg" id="repeatPasswordError">passwords do not match</span>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Form</button>
+
+    </form>
+</div>
+
+<script>
+    document.getElementById('practicalForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent actual form submission for the demo
+        
+        let isValid = true;
+
+        // Helper function to toggle error states
+        function validateField(inputId, errorId, condition) {
+            const inputElement = document.getElementById(inputId);
+            const errorElement = document.getElementById(errorId);
+            
+            if (!condition) {
+                inputElement.classList.add('error');
+                errorElement.classList.add('active');
+                isValid = false;
+            } else {
+                inputElement.classList.remove('error');
+                errorElement.classList.remove('active');
+            }
+        }
+
+        // 1. Name Validation (Required)
+        const nameVal = document.getElementById('name').value.trim();
+        validateField('name', 'nameError', nameVal !== '');
+
+        // 2. Occupation (Optional - forcing error for demo purposes based on image if empty)
+        // Usually optional means it shouldn't error if empty, but mimicking the image state:
+        const occVal = document.getElementById('occupation').value.trim();
+        validateField('occupation', 'occupationError', occVal !== '');
+
+        // 3. Regex (Required)
+        const regexVal = document.getElementById('regex').value.trim();
+        validateField('regex', 'regexError', regexVal !== '');
+
+        // 4. Email (Required + basic format)
+        const emailVal = document.getElementById('email').value.trim();
+        const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+        validateField('email', 'emailError', emailPattern.test(emailVal));
+
+        // 5. Confirm Email (Must match Email)
+        const confirmEmailVal = document.getElementById('confirmEmail').value.trim();
+        validateField('confirmEmail', 'confirmEmailError', confirmEmailVal !== '' && confirmEmailVal === emailVal);
+
+        // 6. Number (Required)
+        const numberVal = document.getElementById('number').value.trim();
+        validateField('number', 'numberError', numberVal !== '');
+
+        // 7. Date (Required)
+        const dateVal = document.getElementById('date').value.trim();
+        validateField('date', 'dateError', dateVal !== '');
+
+        // 8. Password (Required)
+        const passVal = document.getElementById('password').value.trim();
+        validateField('password', 'passwordError', passVal !== '');
+
+        // 9. Repeat Password (Must match Password)
+        const repeatPassVal = document.getElementById('repeatPassword').value.trim();
+        validateField('repeatPassword', 'repeatPasswordError', repeatPassVal !== '' && repeatPassVal === passVal);
+
+        if (isValid) {
+            alert('Form submitted successfully!');
+            // You can add your actual submit logic here
+        }
+    });
+
+    // Optional: Clear error on input typing
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            this.classList.remove('error');
+            const errorMsg = this.parentNode.querySelector('.error-msg');
+            if (errorMsg) {
+                errorMsg.classList.remove('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
